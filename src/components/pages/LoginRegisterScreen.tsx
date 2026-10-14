@@ -272,6 +272,20 @@ export function LoginRegisterScreen({ onLogin, onForgotPassword }: LoginRegister
     }, 1500);
   };
 
+  const handleDemoLogin = () => {
+    setErrors({});
+    setUser({
+      email: 'demo@glowbiebell.example',
+      fullName: 'Demo User',
+      username: 'demo',
+      age: '28',
+      gender: 'female',
+      skinType: 'combination',
+      skincareGoal: 'anti-aging',
+    });
+    onLogin();
+  };
+
   // Handle register submit
   const handleRegisterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -333,9 +347,9 @@ export function LoginRegisterScreen({ onLogin, onForgotPassword }: LoginRegister
       const comingSoonTitle = language === 'th' ? 'กำลังพัฒนา' :
                               language === 'en' ? 'Coming Soon' :
                               '即将推出';
-      const comingSoonMsg = language === 'th' ? 'ฟีเจอร์นี้จะพร้อมใช้งานเร็วๆ นี้! 🚀' :
-                            language === 'en' ? 'This feature is coming soon! 🚀' :
-                            '此功能即将推出！🚀';
+      const comingSoonMsg = language === 'th' ? 'ฟีเจอร์นี้จะพร้อมใช้งานเร็วๆ นี้!' :
+                            language === 'en' ? 'This feature is coming soon!' :
+                            '此功能即将推出！';
       
       toast.dismiss();
       toast.info(comingSoonTitle, {
@@ -552,7 +566,7 @@ export function LoginRegisterScreen({ onLogin, onForgotPassword }: LoginRegister
                         animate={{ opacity: 1, y: 0 }}
                         className="text-red-500 text-sm mt-2 flex items-center gap-1"
                       >
-                        <span>⚠️</span> {errors.email}
+                        {errors.email}
                       </motion.p>
                     )}
                   </div>
@@ -595,7 +609,7 @@ export function LoginRegisterScreen({ onLogin, onForgotPassword }: LoginRegister
                         animate={{ opacity: 1, y: 0 }}
                         className="text-red-500 text-sm mt-2 flex items-center gap-1"
                       >
-                        <span>⚠️</span> {errors.password}
+                        {errors.password}
                       </motion.p>
                     )}
                   </div>
@@ -625,9 +639,19 @@ export function LoginRegisterScreen({ onLogin, onForgotPassword }: LoginRegister
                             background: 'radial-gradient(circle, rgba(255, 209, 231, 0.4) 0%, rgba(223, 211, 255, 0.3) 50%, rgba(160, 203, 255, 0.4) 100%)',
                           }}
                         />
-                        <span className="relative z-10">{t.login} 💕</span>
+                        <span className="relative z-10">{t.login}</span>
                       </>
                     )}
+                  </Button>
+
+                  <Button
+                    type="button"
+                    onClick={handleDemoLogin}
+                    variant="outline"
+                    disabled={isLoading}
+                    className="w-full h-12 rounded-[20px] border-pink-200 hover:border-pink-300 hover:bg-pink-50 transition-all shadow-cute-sm"
+                  >
+                    Login for demo
                   </Button>
 
                   <div className="text-center">
@@ -719,7 +743,7 @@ export function LoginRegisterScreen({ onLogin, onForgotPassword }: LoginRegister
                         animate={{ opacity: 1, y: 0 }}
                         className="text-red-500 text-sm mt-2 flex items-center gap-1"
                       >
-                        <span>⚠️</span> {errors.fullname}
+                        {errors.fullname}
                       </motion.p>
                     )}
                   </div>
@@ -749,7 +773,7 @@ export function LoginRegisterScreen({ onLogin, onForgotPassword }: LoginRegister
                         animate={{ opacity: 1, y: 0 }}
                         className="text-red-500 text-sm mt-2 flex items-center gap-1"
                       >
-                        <span>⚠️</span> {errors.email}
+                        {errors.email}
                       </motion.p>
                     )}
                   </div>
@@ -843,7 +867,7 @@ export function LoginRegisterScreen({ onLogin, onForgotPassword }: LoginRegister
                         animate={{ opacity: 1, y: 0 }}
                         className="text-red-500 text-sm mt-2 flex items-center gap-1"
                       >
-                        <span>⚠️</span> {errors.password}
+                        {errors.password}
                       </motion.p>
                     )}
                   </div>
@@ -1005,7 +1029,7 @@ export function LoginRegisterScreen({ onLogin, onForgotPassword }: LoginRegister
                         animate={{ opacity: 1, y: 0 }}
                         className="text-red-500 text-sm mt-2 flex items-center gap-1"
                       >
-                        <span>⚠️</span> {errors.birthday}
+                        {errors.birthday}
                       </motion.p>
                     )}
                   </div>
@@ -1084,7 +1108,7 @@ export function LoginRegisterScreen({ onLogin, onForgotPassword }: LoginRegister
                             background: 'radial-gradient(circle, rgba(255, 209, 231, 0.4) 0%, rgba(223, 211, 255, 0.3) 50%, rgba(160, 203, 255, 0.4) 100%)',
                           }}
                         />
-                        <span className="relative z-10">{t.register} ✨</span>
+                        <span className="relative z-10">{t.register}</span>
                       </>
                     )}
                   </Button>
@@ -1183,28 +1207,28 @@ export function LoginRegisterScreen({ onLogin, onForgotPassword }: LoginRegister
                 <CheckCircle2 className="w-10 h-10 text-white" />
               </motion.div>
               <DialogTitle className="bg-gradient-to-r from-pink-500 via-lavender-500 to-blue-500 bg-clip-text text-transparent">
-                {t.successTitle} 🎉
+                {t.successTitle}
               </DialogTitle>
             </div>
           </DialogHeader>
           <DialogDescription className="text-center text-gray-600 mb-6">
             {language === 'th' && (
               <>
-                ยินดีต้อนรับสู่ GlowbieBell! 💕
+                ยินดีต้อนรับสู่ GlowbieBell!
                 <br />
                 คุณสามารถเข้าสู่ระบบและเริ่มวิเคราะห์ผิวได้เลย
               </>
             )}
             {language === 'en' && (
               <>
-                Welcome to GlowbieBell! 💕
+                Welcome to GlowbieBell!
                 <br />
                 You can now sign in and start analyzing your skin
               </>
             )}
             {language === 'zh' && (
               <>
-                欢迎来到 GlowbieBell！💕
+                欢迎来到 GlowbieBell！
                 <br />
                 您现在可以登录并开始分析您的皮肤
               </>
